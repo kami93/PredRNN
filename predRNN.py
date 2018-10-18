@@ -96,14 +96,15 @@ with keras.utils.custom_object_scope({'StackedSTLSTMCells':StackedSTLSTMCells,
   
   with tf.device(model_creation_device):
     ''' This is where the issue arises. '''
-    # If model_creation_device == '/cpu:0' or '/cpu:1', 
+    # If model_creation_device == '/cpu:0',
     # Warning related to device placement is raised and
     # the training is extreamly slow with 100% CPU usage.
 
-    # If model_creation_device == '/gpu:0', '/gpu:1', '/gpu:2', or '/gpu:3'
+    # If model_creation_device == '/cpu:1', '/gpu:0', '/gpu:1', '/gpu:2', or '/gpu:3'
     # Warning related to device placement is raised,
     # Warning related to memory shortage is raised, and
-    # GPU usage is unbalanced and highly concentrated to the model_creation device. 
+    # GPU usage is unbalanced and highly concentrated to the model_creation device.
+    # Except that the GPU usage is concentrated to gpu:0 when model_creation device == '/cpu:1'.
   
     cells = StackedSTLSTMCells([STLSTMCell(filters=FILTERS, kernel_size=KERNEL_SIZE) for _ in range(NUM_CELL)])
     predRNN = keras.Sequential([
