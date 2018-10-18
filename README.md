@@ -1,2 +1,2 @@
 # PredRNN_tfKeras
-tf.Keras compatible PredRNN
+PredRNN using TensorFlow Keras
