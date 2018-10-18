@@ -1,2 +1,3 @@
 # PredRNN_tfKeras
-PredRNN using TensorFlow Keras
+PredRNN using TensorFlow Keras.
+Run PredRNN.py
